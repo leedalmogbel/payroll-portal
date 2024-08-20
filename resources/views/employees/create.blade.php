@@ -276,7 +276,7 @@
                     <div class="mb-4">
                         <label for="address" class="block text-gray-700 font-bold mb-2">Address:</label>
                         <textarea name="address" id="address" rows="3" class="form-input rounded-md shadow-sm w-full"
-                            placeholder="Address">{{ old('address', $employee->address) }}</textarea>
+                            placeholder="Address">{{ old('address') }}</textarea>
                     </div>
                     {{-- <div class="mb-4">
                         <label for="email" class="block text-gray-700 font-bold mb-2">Email:</label>
