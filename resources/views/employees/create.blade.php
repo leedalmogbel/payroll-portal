@@ -57,15 +57,24 @@
                             <input type="text" name="lname" id="lname" value="{{ old('lname') }}"
                                 class="form-input rounded-md shadow-sm w-full" placeholder="Last Name">
                         </div>
+                    </div>
 
+                    <div class="mb-8 columns-2">
+                        <div class="col">
+                            <label for="gender" class="block text-gray-700 font-bold mb-2">Gender:</label>
+                            <select name="gender" id="gender" class="form-input rounded-md shadow-sm w-full">
+                                <option value="male" {{ old('gender') == 'male' ? 'selected' : '' }}>Male</option>
+                                <option value="female" {{ old('gender') == 'female' ? 'selected' : '' }}>Female
+                                </option>
+                            </select>
+                        </div>
+                        <div class="col">
+                            <label for="contact_no" class="block text-gray-700 font-bold mb-2">Contact Number:</label>
+                            <input type="text" name="contact_no" id="contact_no" value="{{ old('contact_no') }}"
+                                class="form-input rounded-md shadow-sm w-full" placeholder="Contact Number">
+                        </div>
                     </div>
-                    <div class="mb-4">
-                        <label for="gender" class="block text-gray-700 font-bold mb-2">Gender:</label>
-                        <select name="gender" id="gender" class="form-input rounded-md shadow-sm w-full">
-                            <option value="male" {{ old('gender') == 'male' ? 'selected' : '' }}>Male</option>
-                            <option value="female" {{ old('gender') == 'female' ? 'selected' : '' }}>Female</option>
-                        </select>
-                    </div>
+
                     <div class="mb-8 columns-2">
                         <div class="col">
                             <label for="monthly_rate" class="block text-gray-700 font-bold mb-2">Monthly Rate:</label>
@@ -264,19 +273,11 @@
                         </div>
                     </div>
 
-                    <div class="mb-8 columns-2">
-                        <div class="col">
-                            <label for="contact_no" class="block text-gray-700 font-bold mb-2">Contact Number:</label>
-                            <input type="text" name="contact_no" id="contact_no" value="{{ old('contact_no') }}"
-                                class="form-input rounded-md shadow-sm w-full" placeholder="Contact Number">
-                        </div>
-                        <div class="col">
-                            <label for="address" class="block text-gray-700 font-bold mb-2">Address:</label>
-                            <input type="text" name="address" id="address" value="{{ old('address') }}"
-                                class="form-input rounded-md shadow-sm w-full" placeholder="Address">
-                        </div>
+                    <div class="mb-4">
+                        <label for="address" class="block text-gray-700 font-bold mb-2">Address:</label>
+                        <textarea name="address" id="address" rows="3" class="form-input rounded-md shadow-sm w-full"
+                            placeholder="Address">{{ old('address', $employee->address) }}</textarea>
                     </div>
-
                     {{-- <div class="mb-4">
                         <label for="email" class="block text-gray-700 font-bold mb-2">Email:</label>
                         <input type="email" name="email" id="email"
@@ -289,7 +290,7 @@
                             <option value="0">No</option>
                         </select>
                     </div> --}}
-                    <div class="text-center">
+                    <div class="text-right">
                         <button type="submit"
                             class="inline-block bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded">Submit</button>
                     </div>
