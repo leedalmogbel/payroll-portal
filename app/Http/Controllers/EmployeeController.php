@@ -76,7 +76,14 @@ class EmployeeController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        // Find the employee by ID
+        $employee = Employee::findOrFail($id);
+
+        // correct date format
+        $employee->start_date_cch = \Carbon\Carbon::parse($employee->start_date_cch)->format('Y-m-d');
+
+        // Return the edit view with the employee data
+        return view('employees.edit', compact('employee'));
     }
 
     /**
@@ -84,7 +91,27 @@ class EmployeeController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $employee = Employee::findOrFail($id);
+
+        $fields = [
+            'emp_no', 'salary_grade', 'fname', 'mname', 'lname', 'gender', 
+            'monthly_rate', 'daily_rate', 'hazard_pay', 'pera', 'location', 
+            'designation', 'position', 'position_category', 'subs_allowance', 
+            'bank', 'bank_account', 'gsis_id', 'sss', 'pagibig', 'philhealth', 
+            'tin_no', 'date_hired', 'start_date_cch', 'years_service', 'birthdate',
+            'civil_status', 'ed_attainment', 'prc_no', 'prc_valid_date', 'board_rating',
+            'csc_eligible', 'contact_no', 'address'
+        ];
+
+        foreach ($fields as $field) {
+            if ($request->has($field) && $request->$field != $employee->$field) {
+                $employee->$field = $request->$field;
+            }
+        }
+
+        $employee->save();
+
+        return redirect()->route('employees.index')->with('success', 'Employee updated successfully.');
     }
 
     /**
